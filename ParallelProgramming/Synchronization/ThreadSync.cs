@@ -7,8 +7,6 @@ namespace ParallelProgramming.Synchronization
     {
         private int counter = 0;
 
-        private readonly object lockObj = new object();
-
         public static void Run()
         {
             new ThreadSync().RunTest();
@@ -23,7 +21,7 @@ namespace ParallelProgramming.Synchronization
             };
 
             t1.Start();
-            Console.WriteLine($"Started thread {t1.Name}");
+            Console.WriteLine($"Started thread {t1.Name} | {t1.ManagedThreadId}");
 
             var t2 = new Thread(Incrementer)
             {
@@ -32,7 +30,7 @@ namespace ParallelProgramming.Synchronization
             };
 
             t2.Start();
-            Console.WriteLine($"Started thread {t2.Name}");
+            Console.WriteLine($"Started thread {t2.Name} | {t2.ManagedThreadId}");
 
             t1.Join();
             t2.Join();
@@ -46,7 +44,7 @@ namespace ParallelProgramming.Synchronization
             {
                 while (this.counter < 10)
                 {
-                    lock (lockObj)
+                    lock (this)
                     {
                         var temp = this.counter;
                         ++temp;
@@ -54,7 +52,7 @@ namespace ParallelProgramming.Synchronization
 
                         Thread.Sleep(1);
 
-                        Console.WriteLine($"Thread {Thread.CurrentThread.Name}. Incrementer: {counter}");
+                        Console.WriteLine($"Thread {Thread.CurrentThread.Name}. Incrementer: {counter}. Thread Id: {Thread.CurrentThread.ManagedThreadId}");
                     }
                 }
             }
