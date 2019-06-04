@@ -52,6 +52,7 @@
     <Compile Include="Synchronization\MutexOperation.cs" />
     <Compile Include="Synchronization\NonAtomicOperation.cs" />
     <Compile Include="Synchronization\SpinLockOperation.cs" />
+    <Compile Include="Synchronization\ThreadSync.cs" />
     <Compile Include="WaitTask.cs" />
   </ItemGroup>
   <ItemGroup>

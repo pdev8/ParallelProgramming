@@ -8,7 +8,7 @@ namespace ParallelProgramming
     {
         static void Main(string[] args)
         {
-            MutexOperation.Run();
+            ThreadSync.Run();
 
             Console.WriteLine("Main program finished.");
             Console.ReadKey();
